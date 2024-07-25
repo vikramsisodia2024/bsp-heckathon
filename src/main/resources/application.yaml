@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+
+api:
+  schema: https
+  host: rs1.sandbox.ifc.uk-hub-prod.ozoneapi.co.uk
+  path: /open-banking/v3.1/aisp
+
+aws:
+  schema: https
+  host: ckwl5eo409.execute-api.us-east-1.amazonaws.com
+  path: hackathonDevStage/calculate
+
+
+# Application context configuration
+spring:
+  application:
+    name: myapplication  # Name of the application
+
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          client:
+            RestTemplate: DEBUG

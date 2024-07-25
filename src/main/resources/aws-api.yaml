@@ -1,0 +1,73 @@
+openapi: 3.0.1
+info:
+  title: Bank Credit Assertiveness API
+  description: API to perform credit assertiveness checks for loan applications at a bank.
+  version: 1.0.0
+servers:
+  - url: https://ckwl5eo409.execute-api.us-east-1.amazonaws.com
+tags:
+  - name: Credit Score
+    description: Operations related to Credit
+
+paths:
+  /hackathonDevStage/calculate:
+    post:
+      tags:
+        - Credit Score
+      summary: Perform Credit Assertiveness Check
+      description: Endpoint to perform credit assertiveness check for a loan application.
+      operationId: creditScore
+      requestBody:
+        description: Request object containing customer and loan details for credit assertiveness check.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                totalIncome:
+                  type: string
+                  description: Unique identifier for the user.
+                totalExpenses:
+                  type: string
+                  description: First name of the user.
+                creditLine:
+                  type: string
+                  description: Last name of the user.
+                existingBalance:
+                  type: string
+                  description: Date of birth of the user.
+                totalCredits:
+                  type: string
+                  description: First name of the user.
+                totalDebits:
+                  type: string
+                  description: Last name of the user.
+                totalDebtObligations:
+                  type: string
+                  description: Date of birth of the user.
+      responses:
+        '200':
+          $ref: "#/components/responses/200CreditScore"
+
+components:
+  responses:
+    200CreditScore:
+      description: Credit assertiveness check successful.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              creditScore:
+                type: number
+                description: Approval status (e.g., approved, denied, pending).
+
+              loanApprovalStatus:
+                type: string
+                description: User's credit score.
+
+              loanApprovalAmount:
+                type: number
+                description: Proposed interest rate for the loan.
+

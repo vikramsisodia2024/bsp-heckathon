@@ -9481,3 +9481,51 @@ org.springframework.web.client.HttpClientErrorException$Forbidden: 403 Forbidden
 2024-07-25 13:38:13 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
 2024-07-25 13:38:13 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
 2024-07-25 13:38:13 INFO  com.bsp.demo.DemoApplication - Started DemoApplication in 0.922 seconds (process running for 1.062)
+2024-07-25 14:35:38 INFO  com.bsp.demo.DemoApplication - Starting DemoApplication using Java 21.0.3 with PID 64227 (/Users/ces/Downloads/demo/build/classes/java/main started by ces in /Users/ces/Downloads/demo)
+2024-07-25 14:35:38 DEBUG com.bsp.demo.DemoApplication - Running with Spring Boot v3.4.0-SNAPSHOT, Spring v6.2.0-M6
+2024-07-25 14:35:38 INFO  com.bsp.demo.DemoApplication - No active profile set, falling back to 1 default profile: "default"
+2024-07-25 14:35:38 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2024-07-25 14:35:38 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-07-25 14:35:38 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-07-25 14:35:38 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-25 14:35:38 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-07-25 14:35:38 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 494 ms
+2024-07-25 14:35:38 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-07-25 14:35:38 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2024-07-25 14:35:38 INFO  com.bsp.demo.DemoApplication - Started DemoApplication in 1.241 seconds (process running for 1.653)
+2024-07-25 14:36:58 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-25 14:36:58 INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-07-25 14:36:58 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-07-25 14:36:58 DEBUG o.s.web.client.RestTemplate - HTTP GET https://rs1.sandbox.ifc.uk-hub-prod.ozoneapi.co.uk/open-banking/v3.1/aisp/accounts
+2024-07-25 14:36:58 DEBUG o.s.web.client.RestTemplate - Accept=[application/json, application/*+json]
+2024-07-25 14:36:59 DEBUG o.s.web.client.RestTemplate - Response 200 OK
+2024-07-25 14:36:59 DEBUG o.s.web.client.RestTemplate - Reading to [com.credit.model.OBReadAccount6]
+2024-07-25 14:36:59 DEBUG o.s.web.client.RestTemplate - HTTP GET https://rs1.sandbox.ifc.uk-hub-prod.ozoneapi.co.uk/open-banking/v3.1/aisp/accounts/cdfb6d03-1ed5-4b9a-ae33-f468706ba4be/balances
+2024-07-25 14:36:59 DEBUG o.s.web.client.RestTemplate - Accept=[application/json, application/*+json]
+2024-07-25 14:37:01 DEBUG o.s.web.client.RestTemplate - Response 200 OK
+2024-07-25 14:37:01 DEBUG o.s.web.client.RestTemplate - Reading to [com.credit.model.OBReadBalance1]
+2024-07-25 14:37:01 DEBUG o.s.web.client.RestTemplate - HTTP GET https://rs1.sandbox.ifc.uk-hub-prod.ozoneapi.co.uk/open-banking/v3.1/aisp/accounts/0cfc13e3-03a7-4880-9c65-4234894bab6b/balances
+2024-07-25 14:37:01 DEBUG o.s.web.client.RestTemplate - Accept=[application/json, application/*+json]
+2024-07-25 14:37:01 DEBUG o.s.web.client.RestTemplate - Response 200 OK
+2024-07-25 14:37:01 DEBUG o.s.web.client.RestTemplate - Reading to [com.credit.model.OBReadBalance1]
+2024-07-25 14:37:01 DEBUG o.s.web.client.RestTemplate - HTTP GET https://rs1.sandbox.ifc.uk-hub-prod.ozoneapi.co.uk/open-banking/v3.1/aisp/accounts/cdfb6d03-1ed5-4b9a-ae33-f468706ba4be/direct-debits
+2024-07-25 14:37:01 DEBUG o.s.web.client.RestTemplate - Accept=[application/json, application/*+json]
+2024-07-25 14:37:02 DEBUG o.s.web.client.RestTemplate - Response 200 OK
+2024-07-25 14:37:02 DEBUG o.s.web.client.RestTemplate - Reading to [com.credit.model.OBReadDirectDebit2]
+2024-07-25 14:37:02 DEBUG o.s.web.client.RestTemplate - HTTP GET https://rs1.sandbox.ifc.uk-hub-prod.ozoneapi.co.uk/open-banking/v3.1/aisp/accounts/0cfc13e3-03a7-4880-9c65-4234894bab6b/direct-debits
+2024-07-25 14:37:02 DEBUG o.s.web.client.RestTemplate - Accept=[application/json, application/*+json]
+2024-07-25 14:37:02 DEBUG o.s.web.client.RestTemplate - Response 200 OK
+2024-07-25 14:37:02 DEBUG o.s.web.client.RestTemplate - Reading to [com.credit.model.OBReadDirectDebit2]
+2024-07-25 14:37:02 DEBUG o.s.web.client.RestTemplate - HTTP GET https://rs1.sandbox.ifc.uk-hub-prod.ozoneapi.co.uk/open-banking/v3.1/aisp/accounts/cdfb6d03-1ed5-4b9a-ae33-f468706ba4be/scheduled-payments
+2024-07-25 14:37:02 DEBUG o.s.web.client.RestTemplate - Accept=[application/json, application/*+json]
+2024-07-25 14:37:03 DEBUG o.s.web.client.RestTemplate - Response 200 OK
+2024-07-25 14:37:03 DEBUG o.s.web.client.RestTemplate - Reading to [com.credit.model.OBReadScheduledPayment3]
+2024-07-25 14:37:03 DEBUG o.s.web.client.RestTemplate - HTTP GET https://rs1.sandbox.ifc.uk-hub-prod.ozoneapi.co.uk/open-banking/v3.1/aisp/accounts/0cfc13e3-03a7-4880-9c65-4234894bab6b/scheduled-payments
+2024-07-25 14:37:03 DEBUG o.s.web.client.RestTemplate - Accept=[application/json, application/*+json]
+2024-07-25 14:37:04 DEBUG o.s.web.client.RestTemplate - Response 200 OK
+2024-07-25 14:37:04 DEBUG o.s.web.client.RestTemplate - Reading to [com.credit.model.OBReadScheduledPayment3]
+2024-07-25 14:37:04 DEBUG o.s.web.client.RestTemplate - HTTP POST https://ckwl5eo409.execute-api.us-east-1.amazonaws.com/hackathonDevStage/calculate
+2024-07-25 14:37:04 DEBUG o.s.web.client.RestTemplate - Accept=[application/json, application/*+json]
+2024-07-25 14:37:04 DEBUG o.s.web.client.RestTemplate - Writing [CreditScoreRequest(totalIncome=3500.0, totalExpenses=null, creditLine=2000.0, existingBalance=3500.0, totalCredits=3500.0, totalDebits=null, totalDebtObligations=4079.62)] as "application/json"
+2024-07-25 14:37:05 DEBUG o.s.web.client.RestTemplate - Response 200 OK
+2024-07-25 14:37:05 DEBUG o.s.web.client.RestTemplate - Reading to [com.bsp.model.FinancialServices200Response]

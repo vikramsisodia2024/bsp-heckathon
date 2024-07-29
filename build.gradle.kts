@@ -24,7 +24,8 @@ configurations {
 repositories {
 	mavenCentral()
 	maven { url = uri("https://repo.spring.io/milestone") }
-	maven { url = uri("https://repo.spring.io/snapshot") }
+	maven { url = uri("https://repo.spring.io/snapshot")
+		maven { url = uri("https://repo.spring.io/release") }}
 }
 
 dependencies {
@@ -51,6 +52,10 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-logging")
 	compileOnly("org.projectlombok:lombok") // Check for the latest version
 	annotationProcessor("org.projectlombok:lombok")// For annotation processing
+
+	implementation("org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE")
+	implementation("com.amazonaws:aws-java-sdk-s3:1.12.571")
+	implementation("net.sourceforge.tess4j:tess4j:4.5.5")
 }
 
 
@@ -82,28 +87,28 @@ tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("gen
 	generateApiTests.set(false)
 }
 
-	tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("generateOpenApiAccountAndTransaction") {
-		generatorName.set("java")
-		library.set("resttemplate")
-		inputSpec.set("$rootDir/src/main/resources/Account and Transaction API.yaml")
-		outputDir.set("$buildDir/generated")
-		apiPackage.set("com.credit.api") // Package for generated API classes
-		modelPackage.set("com.credit.model") // Package for generated model classes
-		invokerPackage.set("com.credit.invoker") // Package for generated model classes
-		configOptions.set(
-			mapOf(
-				"dateLibrary" to "java8",
-				"openApiNullable" to "false",
-				"useSpringfox" to "false",
-				"reactive" to "true",
-				"skipTests" to "true",
-				"useBeanValidation" to "false"
-			)
+tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("generateOpenApiAccountAndTransaction") {
+	generatorName.set("java")
+	library.set("resttemplate")
+	inputSpec.set("$rootDir/src/main/resources/Account and Transaction API.yaml")
+	outputDir.set("$buildDir/generated")
+	apiPackage.set("com.credit.api") // Package for generated API classes
+	modelPackage.set("com.credit.model") // Package for generated model classes
+	invokerPackage.set("com.credit.invoker") // Package for generated model classes
+	configOptions.set(
+		mapOf(
+			"dateLibrary" to "java8",
+			"openApiNullable" to "false",
+			"useSpringfox" to "false",
+			"reactive" to "true",
+			"skipTests" to "true",
+			"useBeanValidation" to "false"
 		)
-		skipValidateSpec.set(true)
-		validateSpec.set(false)
-		generateApiTests.set(false)
-	}
+	)
+	skipValidateSpec.set(true)
+	validateSpec.set(false)
+	generateApiTests.set(false)
+}
 
 tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("generateCreditScore") {
 	generatorName.set("java")
@@ -129,16 +134,16 @@ tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("gen
 	generateApiTests.set(false)
 }
 
-	sourceSets {
-		main {
-			java.srcDir("$buildDir/generated/src/main/java")
-		}
+sourceSets {
+	main {
+		java.srcDir("$buildDir/generated/src/main/java")
 	}
+}
 
-	tasks.named("compileJava") {
-		dependsOn("generateOpenApi")
-		dependsOn("generateOpenApiAccountAndTransaction")
-		dependsOn("generateCreditScore")
-	}
+tasks.named("compileJava") {
+	dependsOn("generateOpenApi")
+	dependsOn("generateOpenApiAccountAndTransaction")
+	dependsOn("generateCreditScore")
+}
 
 

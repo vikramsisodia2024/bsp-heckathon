@@ -134,6 +134,30 @@ tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("gen
 	generateApiTests.set(false)
 }
 
+tasks.register<org.openapitools.generator.gradle.plugin.tasks.GenerateTask>("generateDetectText") {
+	generatorName.set("java")
+	library.set("resttemplate")
+	inputSpec.set("$rootDir/src/main/resources/detect-text-api.yaml")
+	outputDir.set("$buildDir/generated")
+	apiPackage.set("com.detecttext.api") // Package for generated API classes
+	modelPackage.set("com.detecttext.model") // Package for generated model classes
+	invokerPackage.set("com.detecttext.invoker") // Package for generated model classes
+	configOptions.set(
+		mapOf(
+			"dateLibrary" to "java8",
+			"openApiNullable" to "false",
+			"useSpringfox" to "false",
+			"reactive" to "true",
+			"skipTests" to "true",
+			"useBeanValidation" to "false"
+
+		)
+	)
+	skipValidateSpec.set(true)
+	validateSpec.set(false)
+	generateApiTests.set(false)
+}
+
 sourceSets {
 	main {
 		java.srcDir("$buildDir/generated/src/main/java")
@@ -144,6 +168,8 @@ tasks.named("compileJava") {
 	dependsOn("generateOpenApi")
 	dependsOn("generateOpenApiAccountAndTransaction")
 	dependsOn("generateCreditScore")
+	dependsOn("generateDetectText")
+
 }
 
 

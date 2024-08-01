@@ -6,6 +6,9 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.util.IOUtils;
+import com.bsp.demo.service.DetectTextService;
+import com.detecttext.model.DetectTextRequest;
+import com.detecttext.model.S3UploadPost200Response;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +22,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 @Slf4j
@@ -29,6 +31,9 @@ public class DocumentController {
 
     private final AmazonS3 amazonS3;
     private final String bucketName;
+
+    @Autowired
+    private DetectTextService detectTextService;
 
     @Autowired
     public DocumentController(AmazonS3 amazonS3, @Value("${cloud.s3.bucket}") String bucketName) {
@@ -63,6 +68,22 @@ public class DocumentController {
             headers.setContentDispositionFormData("attachment", "output.pdf");
 
             return ResponseEntity.ok().headers(headers).body(pdfOutputStream.toByteArray());
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+    @RequestMapping(
+            method = RequestMethod.POST,
+            value = "/loan/fetchParsedDocument",
+            consumes =  "application/json",
+            produces = "application/json"
+    )
+    public ResponseEntity<S3UploadPost200Response> fetchDocument(@RequestBody DetectTextRequest request) {
+        try {
+            log.info("DetectTextRequest request{}", request);
+            S3UploadPost200Response detectText200Response = detectTextService.postDetectText(request);
+            return new ResponseEntity<>(detectText200Response, HttpStatus.OK);
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);

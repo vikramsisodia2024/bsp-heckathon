@@ -1,7 +1,7 @@
 package com.bsp.demo.controller;
 
 import com.bsp.api.FinancialServicesApi;
-import com.bsp.demo.pojo.CreditScoreRequest;
+import com.bsp.demo.model.CreditScoreRequest;
 import com.bsp.demo.service.AWSService;
 import com.bsp.demo.service.CreditService;
 import com.bsp.model.FinancialServices200Response;

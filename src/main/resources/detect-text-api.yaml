@@ -1,57 +1,75 @@
 openapi: 3.0.1
 info:
-  title: Detect Text API
-  description: API to perform Detect Text
+  title: S3 Object Upload API
+  description: API to upload an S3 object
   version: 1.0.0
-servers:
-  - url: https://ckwl5eo409.execute-api.us-east-1.amazonaws.com
-tags:
-  - name: Detect Text
-    description: Operations related to Detect Text
-
 paths:
-  /hackathonDevStage/detectText:
+  /s3/upload:
     post:
-      tags:
-        - Detect Text
-      summary: Perform Detect Text
-      description: Endpoint to perform Detect text
-      operationId: detectText
+      summary: Upload an S3 object
+      description: Upload a document to an S3 bucket
       requestBody:
-        description: Detext text API to read PDF files
         required: true
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                userId:
-                  type: string
-                  description: Unique identifier for the user.
-                bucketName:
-                  type: string
-                  description: First name of the user.
-                fileName:
-                  type: string
-                  description: Last name of the user.
+              $ref: '#/components/schemas/DetectTextRequest'
       responses:
         '200':
-          $ref: "#/components/responses/200DetectText"
-
+          description: Successfully uploaded the S3 object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: S3 object uploaded successfully
+                  s3Object:
+                    $ref: '#/components/schemas/S3Object'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Invalid input data
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: Internal server error
 components:
-  responses:
-    200DetectText:
-      description: Detect Text Response
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              statusCode:
-                type: string
-                description: Status Code
+  schemas:
+    s3Object:
+      type: object
+      properties:
+        bucket:
+          type: string
+          example: hackathonbsp
+        userId:
+          type: string
+          example: "12345"
+        name:
+          type: string
+          example: "DTI Business Name Certification - Liza Garcia.pdf"
+      required:
+        - Bucket
+        - userId
+        - Name
 
-              body:
-                type: string
-                description: Document Body
-
+    DetectTextRequest:
+      type: object
+      properties:
+        s3Object:
+          $ref: '#/components/schemas/S3Object'
+      required:
+        - s3Object

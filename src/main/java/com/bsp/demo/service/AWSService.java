@@ -3,7 +3,7 @@ package com.bsp.demo.service;
 
 import com.aws.api.CreditScoreApi;
 import com.aws.invoker.ApiClient;
-import com.bsp.demo.pojo.CreditScoreRequest;
+import com.bsp.demo.model.CreditScoreRequest;
 import com.bsp.model.FinancialServices200Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;

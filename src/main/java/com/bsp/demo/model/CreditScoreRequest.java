@@ -1,4 +1,4 @@
-package com.bsp.demo.pojo;
+package com.bsp.demo.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
